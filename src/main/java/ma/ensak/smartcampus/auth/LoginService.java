@@ -13,6 +13,6 @@ public class LoginService {
         if (login(email, password)) {
             return "Connexion réussie";
         }
-        return "Identifiants incorrects : vérifiez votre e-mail et votre mot de passe";
+        return "Identifiants incorrects : utilisez votre e-mail @ensak.ma et un mot de passe d'au moins 8 caractères";
     }
 }
