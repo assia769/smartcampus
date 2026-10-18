@@ -8,4 +8,11 @@ public class LoginService {
         }
         return email.endsWith("@ensak.ma") && password.length() >= 8;
     }
+
+    public String authenticate(String email, String password) {
+        if (login(email, password)) {
+            return "Connexion réussie";
+        }
+        return "Identifiants incorrects : utilisez votre e-mail @ensak.ma et un mot de passe d'au moins 8 caractères";
+    }
 }

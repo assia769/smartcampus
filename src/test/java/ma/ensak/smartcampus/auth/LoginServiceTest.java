@@ -21,4 +21,12 @@ class LoginServiceTest {
     void identifiantsNuls() {
         assertFalse(service.login(null, null));
     }
+
+    @Test
+    void messageSiMotDePasseIncorrect() {
+        String message = service.authenticate("etudiant@ensak.ma", "abc");
+        assertTrue(message.startsWith("Identifiants incorrects"));
+        assertTrue(message.contains("@ensak.ma"));
+        assertTrue(message.contains("8 caractères"));
+    }
 }
