@@ -9,7 +9,7 @@ class LoginServiceTest {
 
     @Test
     void connexionValide() {
-        assertFalse(service.login("etudiant@ensak.ma", "motdepasse1"));
+        assertTrue(service.login("etudiant@ensak.ma", "motdepasse1"));
     }
 
     @Test
