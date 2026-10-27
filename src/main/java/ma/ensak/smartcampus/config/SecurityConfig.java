@@ -15,10 +15,19 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // TEMPORAIRE : remplacé au ticket 2 (Spring Security)
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/login", "/error", "/css/**", "/js/**", "/images/**").permitAll()
+                .anyRequest().authenticated())
+            .formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/rooms", true)
+                .permitAll())
+            .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout")
+                .permitAll());
         return http.build();
     }
 }
