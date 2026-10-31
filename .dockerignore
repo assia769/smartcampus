@@ -1,0 +1,13 @@
+.git
+.vscode
+.idea
+*.iml
+*.log
+.mvn
+mvnw
+mvnw.cmd
+src
+README.md
+Jenkinsfile
+pom.xml
+.env
