@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bordeaux-500: #a3203f;
+  --color-bordeaux-600: #800020;
+  --color-bordeaux-700: #66001a;
+  --color-bordeaux-900: #33000d;
+  --color-gold: #c9a227;
+  --color-ivory: #faf7f2;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); margin: 0; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 45s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes shine {
+  from { transform: translateX(-120%) skewX(-20deg); }
+  to   { transform: translateX(220%) skewX(-20deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
