@@ -30,9 +30,14 @@ services:
     restart: unless-stopped
 
   db:
+    # image: postgres:16-alpine
+    # container_name: smartcampus-db
+    # ports:
+    #   - "5432:5432"
     image: postgres:16-alpine
     container_name: smartcampus-db
-
+    ports:
+      - "5433:5432"
     environment:
       POSTGRES_DB: smartcampus
       POSTGRES_USER: smartcampus
