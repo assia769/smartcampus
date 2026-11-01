@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { User, Lock, ArrowRight, Loader2, AlertCircle } from 'lucide-react'
@@ -7,6 +8,7 @@ import bg from '../assets/bg.png'
 import logo from '../assets/logo.png'
 import Field from '../components/Field'
 import Testimonials from '../components/Testimonials'
+import { API_URL, setAuth } from '../lib/auth'
 
 const container: Variants = {
   hidden: { opacity: 0, y: 30, scale: 0.97 },
@@ -22,11 +24,11 @@ const item: Variants = {
 
 const links = [
   { label: 'Mot de passe oublié ?', href: '#/forgot-password' },
-  { label: 'Créer un compte', href: '#/register' },
   { label: 'Aide et support', href: '#/support' },
 ]
 
 export default function LoginPage() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -37,17 +39,21 @@ export default function LoginPage() {
     setError('')
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:8080/api/auth/login', {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       })
-      if (!res.ok) throw new Error('Identifiants incorrects')
-      const data = await res.json()
-      localStorage.setItem('token', data.token) // à adapter selon ton backend
-      // TODO : rediriger vers le tableau de bord
+      if (res.status === 401) throw new Error('Identifiants incorrects')
+      if (!res.ok) throw new Error('Erreur serveur')
+      setAuth(await res.json())
+      navigate('/dashboard', { replace: true })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Connexion impossible')
+      setError(
+        err instanceof Error && err.message !== 'Failed to fetch'
+          ? err.message
+          : 'Serveur injoignable'
+      )
     } finally {
       setLoading(false)
     }
