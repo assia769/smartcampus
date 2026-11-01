@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8081'
+export const API_URL = ''
 const KEY = 'smartcampus_auth'
 
 export interface AuthUser {
