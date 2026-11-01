@@ -1,4 +1,4 @@
-package ma.ensak.smartcampus.user;
+package ma.ensak.smartcampus.entity;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

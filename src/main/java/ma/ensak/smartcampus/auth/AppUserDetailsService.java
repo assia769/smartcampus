@@ -1,11 +1,13 @@
 package ma.ensak.smartcampus.auth;
 
-import ma.ensak.smartcampus.user.UserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import ma.ensak.smartcampus.entity.UserRepository;
+ 
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
@@ -18,7 +20,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        ma.ensak.smartcampus.user.User utilisateur = users.findByEmail(email)
+        ma.ensak.smartcampus.entity.User utilisateur = users.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur introuvable"));
 
         return User.withUsername(utilisateur.getEmail())

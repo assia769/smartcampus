@@ -1,13 +1,14 @@
 package ma.ensak.smartcampus.config;
 
-import ma.ensak.smartcampus.user.Role;
-import ma.ensak.smartcampus.user.User;
-import ma.ensak.smartcampus.user.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import ma.ensak.smartcampus.enums.Role;
+import ma.ensak.smartcampus.entity.User;
+import ma.ensak.smartcampus.entity.UserRepository;
 
 @Component
 public class UserDataLoader implements CommandLineRunner {
