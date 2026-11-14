@@ -27,6 +27,14 @@ public class Materiel {
 
     protected Materiel() { }
 
+    // Constructeur public utilisé par ServiceStock et StockSeeder (nouveau)
+    public Materiel(String designation, int quantiteTotale, String etat) {
+        this.designation = designation;
+        this.quantiteTotale = quantiteTotale;
+        this.quantiteDisponible = quantiteTotale;
+        this.etat = etat;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getDesignation() { return designation; }
@@ -38,4 +46,4 @@ public class Materiel {
     public String getEtat() { return etat; }
     public void setEtat(String etat) { this.etat = etat; }
     public List<LigneMaterielReservation> getLignesReservations() { return lignesReservations; }
-}
+} 

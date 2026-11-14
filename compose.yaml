@@ -22,7 +22,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/smartcampus
       SPRING_DATASOURCE_USERNAME: smartcampus
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
     depends_on:
       db:
         condition: service_healthy
@@ -37,8 +38,7 @@ services:
       POSTGRES_DB: smartcampus
       POSTGRES_USER: smartcampus
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_SHOW_SQL: "true"
+      
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
