@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartcampus
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: smartcampus
+  template:
+    metadata:
+      labels:
+        app: smartcampus
+    spec:
+      containers:
+        - name: smartcampus
+          image: smartcampus:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: smartcampus-config
+            - secretRef:
+                name: smartcampus-secret
+          readinessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 60
+            periodSeconds: 15
