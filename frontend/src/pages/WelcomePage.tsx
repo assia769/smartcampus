@@ -12,7 +12,12 @@ export default function WelcomePage() {
       <Navbar />
       <main className="flex h-[calc(100vh-4rem)] flex-col items-center justify-center gap-6">
         <h1 className="text-3xl font-bold text-slate-900">Welcome {label}</h1>
-
+        <Link
+          to="/salles"
+          className="rounded-xl bg-bordeaux-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-bordeaux-700"
+        >
+          {auth?.role === 'ADMIN' ? 'Gérer les salles' : 'Consulter les salles'}
+        </Link>
         {peutGererStock && (
           <Link
             to="/stock"
