@@ -27,6 +27,11 @@ public class AuthController {
         if (user == null || !encoder.matches(req.password(), user.getMotDePasseHash())) {
             return ResponseEntity.status(401).body(Map.of("message", "Identifiants incorrects"));
         }
+        
+        if (!user.isActif()) {
+            return ResponseEntity.status(403).body(Map.of("message", "Compte désactivé. Contactez l'administration."));
+        }
+        
         String role = user.getRole().name();
         return ResponseEntity.ok(Map.of(
                 "token", jwt.generate(user.getEmail(), role),
