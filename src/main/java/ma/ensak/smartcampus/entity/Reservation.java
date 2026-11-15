@@ -11,6 +11,7 @@ import ma.ensak.smartcampus.enums.StatutReservation;
     @Index(name = "idx_reservation_salle_dates", columnList = "salle_id,date_debut,date_fin")
 })
 public class Reservation {
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -54,8 +55,9 @@ public class Reservation {
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LigneMaterielReservation> lignesMateriel = new ArrayList<>();
 
-    protected Reservation() { }
-
+    // protected Reservation() { }
+    public Reservation() { }
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public LocalDateTime getDateDebut() { return dateDebut; }

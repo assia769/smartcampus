@@ -30,4 +30,9 @@ public class ApiExceptionHandler {
     public ResponseEntity<?> denied(AccessDeniedException e) {
         return ResponseEntity.status(403).body(Map.of("message", "Accès refusé"));
     }
+    
+    @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
+    public ResponseEntity<?> illisible(org.springframework.http.converter.HttpMessageNotReadableException e) {
+        return ResponseEntity.badRequest().body(Map.of("message", "Requête invalide : vérifiez les valeurs saisies"));
+    }
 }
