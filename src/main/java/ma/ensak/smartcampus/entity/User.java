@@ -27,6 +27,9 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean actif = true;
+
     protected User() {
     }
 
@@ -93,5 +96,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+        public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
     }
 }

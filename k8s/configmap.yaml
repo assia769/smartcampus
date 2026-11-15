@@ -5,4 +5,4 @@ metadata:
 data:
   SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/smartcampus
   SPRING_DATASOURCE_USERNAME: smartcampus
-  APP_ENV: "v2"
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
