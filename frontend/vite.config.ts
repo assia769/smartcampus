@@ -10,5 +10,8 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', 'lucide-react'],
   },
-  server: { port: 5173 },
+  server: {
+  port: 5173,
+  proxy: { '/api': 'http://localhost:8082' },
+},
 })
