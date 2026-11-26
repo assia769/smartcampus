@@ -5,10 +5,17 @@ import { clearAuth, getAuth, roleLabels } from '../lib/auth'
 
 // Liens par rôle : ajoute les tiens plus tard
 const menus: Record<string, { label: string; to: string }[]> = {
-  ADMIN: [{ label: 'Accueil', to: '/dashboard' }],
+    ADMIN: [
+    { label: 'Accueil', to: '/dashboard' },
+    { label: 'Utilisateurs', to: '/admin/users' },
+    { label: 'Stock', to: '/stock' },
+  ],
   ENSEIGNANT: [{ label: 'Accueil', to: '/dashboard' }],
   ETUDIANT: [{ label: 'Accueil', to: '/dashboard' }],
-  SUPERVISEUR: [{ label: 'Accueil', to: '/dashboard' }],
+  SUPERVISEUR: [
+    { label: 'Accueil', to: '/dashboard' },
+    { label: 'Stock', to: '/stock' },
+  ],
 }
 
 export default function Navbar() {
