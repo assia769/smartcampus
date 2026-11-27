@@ -3,6 +3,11 @@ import type { ReactNode } from 'react'
 import LoginPage from './pages/LoginPage'
 import WelcomePage from './pages/WelcomePage'
 import StockPage from './pages/StockPage'
+import SallesPage from './pages/SallesPage'
+import SalleDetailPage from './pages/SalleDetailPage'
+import ReserverPage from './pages/ReserverPage'
+import MesReservationsPage from './pages/MesReservationsPage'
+import DemandesAmphiPage from './pages/DemandesAmphiPage'
 import UsersPage from './pages/UsersPage'
 import { getAuth } from './lib/auth'
 
@@ -22,6 +27,16 @@ export default function App() {
         <Route path="/stock" element={
           <Protected roles={['SUPERVISEUR', 'ADMIN']}><StockPage /></Protected>
         } />
+        <Route path="/salles" element={<Protected><SallesPage /></Protected>} />
+        <Route path="/salles/:id" element={<Protected><SalleDetailPage /></Protected>} />
+        <Route path="/reserver" element={
+          <Protected roles={['ETUDIANT', 'ENSEIGNANT', 'ADMIN']}><ReserverPage /></Protected>
+        } />
+        <Route path="/reservations" element={
+          <Protected roles={['ETUDIANT', 'ENSEIGNANT', 'ADMIN']}><MesReservationsPage /></Protected>
+        } />
+        <Route path="/demandes" element={
+          <Protected roles={['ADMIN']}><DemandesAmphiPage /></Protected>
         <Route path="/admin/users" element={
           <Protected roles={['ADMIN']}><UsersPage /></Protected>
         } />

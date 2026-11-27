@@ -3,17 +3,30 @@ import { LogOut } from 'lucide-react'
 import logo from '../assets/logo.png'
 import { clearAuth, getAuth, roleLabels } from '../lib/auth'
 
-// Liens par rôle : ajoute les tiens plus tard
 const menus: Record<string, { label: string; to: string }[]> = {
     ADMIN: [
     { label: 'Accueil', to: '/dashboard' },
+    { label: 'Salles', to: '/salles' },
+    { label: 'Demandes amphi', to: '/demandes' },
+    { label: 'Matériel', to: '/stock' },
+  ],
+  ENSEIGNANT: [
+    { label: 'Accueil', to: '/dashboard' },
+    { label: 'Salles', to: '/salles' },
+    { label: 'Réserver', to: '/reserver' },
+    { label: 'Mes réservations', to: '/reservations' },
+  ],
+  ETUDIANT: [
+    { label: 'Accueil', to: '/dashboard' },
+    { label: 'Salles', to: '/salles' },
+    { label: 'Réserver', to: '/reserver' },
+    { label: 'Mes réservations', to: '/reservations' },
     { label: 'Utilisateurs', to: '/admin/users' },
     { label: 'Stock', to: '/stock' },
   ],
-  ENSEIGNANT: [{ label: 'Accueil', to: '/dashboard' }],
-  ETUDIANT: [{ label: 'Accueil', to: '/dashboard' }],
   SUPERVISEUR: [
     { label: 'Accueil', to: '/dashboard' },
+    { label: 'Salles', to: '/salles' },
     { label: 'Stock', to: '/stock' },
   ],
 }

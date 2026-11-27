@@ -7,6 +7,14 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "equipements_salle")
 public class EquipementSalle {
+    // ajoute ce constructeur sous le constructeur protected existant
+    public EquipementSalle(String nom, String etat, String description, Salle salle) {
+        this.nom = nom;
+        this.etat = etat;
+        this.description = description;
+        this.salle = salle;
+    }
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
