@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        TAG = "${env.BUILD_NUMBER}"
+    }
     stages {
         stage('Checkout') {
             steps { checkout scm }
@@ -9,6 +12,17 @@ pipeline {
         }
         stage('Test') {
             steps { sh 'mvn -B test' }
+            post {
+                always {
+                    junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Docker build') {
+            steps {
+                sh "docker build -t smartcampus:${TAG} ."
+                sh "docker build -t smartcampus-frontend:${TAG} ./frontend"
+            }
         }
     }
     post {
@@ -16,4 +30,5 @@ pipeline {
             archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
         }
     }
+
 }
