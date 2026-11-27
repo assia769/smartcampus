@@ -4,7 +4,7 @@ import logo from '../assets/logo.png'
 import { clearAuth, getAuth, roleLabels } from '../lib/auth'
 
 const menus: Record<string, { label: string; to: string }[]> = {
-  ADMIN: [
+    ADMIN: [
     { label: 'Accueil', to: '/dashboard' },
     { label: 'Salles', to: '/salles' },
     { label: 'Demandes amphi', to: '/demandes' },
@@ -21,6 +21,8 @@ const menus: Record<string, { label: string; to: string }[]> = {
     { label: 'Salles', to: '/salles' },
     { label: 'Réserver', to: '/reserver' },
     { label: 'Mes réservations', to: '/reservations' },
+    { label: 'Utilisateurs', to: '/admin/users' },
+    { label: 'Stock', to: '/stock' },
   ],
   SUPERVISEUR: [
     { label: 'Accueil', to: '/dashboard' },

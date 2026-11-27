@@ -8,6 +8,7 @@ import SalleDetailPage from './pages/SalleDetailPage'
 import ReserverPage from './pages/ReserverPage'
 import MesReservationsPage from './pages/MesReservationsPage'
 import DemandesAmphiPage from './pages/DemandesAmphiPage'
+import UsersPage from './pages/UsersPage'
 import { getAuth } from './lib/auth'
 
 function Protected({ children, roles }: { children: ReactNode; roles?: string[] }) {
@@ -36,6 +37,8 @@ export default function App() {
         } />
         <Route path="/demandes" element={
           <Protected roles={['ADMIN']}><DemandesAmphiPage /></Protected>
+        <Route path="/admin/users" element={
+          <Protected roles={['ADMIN']}><UsersPage /></Protected>
         } />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

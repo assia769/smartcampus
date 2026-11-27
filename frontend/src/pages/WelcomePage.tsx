@@ -6,6 +6,7 @@ export default function WelcomePage() {
   const auth = getAuth()
   const label = auth ? roleLabels[auth.role] ?? auth.role : ''
   const peutGererStock = auth?.role === 'SUPERVISEUR' || auth?.role === 'ADMIN'
+  const peutGererUtilisateurs = auth?.role === 'ADMIN'
 
   return (
     <div className="min-h-screen bg-white">
@@ -26,7 +27,16 @@ export default function WelcomePage() {
             Gérer le stock
           </Link>
         )}
+
+        {peutGererUtilisateurs && (
+          <Link
+            to="/admin/users"
+            className="rounded-xl bg-bordeaux-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-bordeaux-700"
+          >
+            Gestion des utilisateurs
+          </Link>
+        )}
       </main>
     </div>
   )
-} 
+}
